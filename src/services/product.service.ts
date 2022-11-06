@@ -7,4 +7,8 @@ export default class ProductService {
   async create(product: IProduct): Promise<IProduct> {
     return this.productModel.create(product);
   }
+
+  async getAll(): Promise<IProduct[]> {
+    return this.productModel.getAll();
+  }
 }

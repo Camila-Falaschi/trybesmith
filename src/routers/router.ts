@@ -1,9 +1,8 @@
 import { Router } from 'express';
-import { validateProduct } from '../middlewares/valuesValidation';
 import productRouter from './product.router';
 
 const router = Router();
 
-router.use('/products', validateProduct, productRouter);
+router.use('/products', productRouter);
 
 export default router;
