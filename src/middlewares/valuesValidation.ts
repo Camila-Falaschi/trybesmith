@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import AppErrors from '../errors/AppErrors';
 import { ILogin, IProduct, IUser } from '../interfaces';
-import { productSchema } from '../utils/schemas';
+import { productSchema, userSchema } from '../utils/schemas';
 
 function status(error: string) { return error.includes('required') ? 400 : 422; }
 
@@ -16,11 +16,9 @@ export function validateProduct(req: Request, res: Response, next: NextFunction)
 
 export function validateUser(req: Request, _res: Response, next: NextFunction) {
   const product: IUser = req.body;
-  const { username, classe, level, password } = product;
+  const { error } = userSchema.validate(product);
 
-  if (!username || !classe || !level || !password) {
-    throw new AppErrors(400, 'Some required fields are missing');
-  }
+  if (error) throw new AppErrors(status(error.message), error.message);
 
   next();
 }
