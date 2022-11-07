@@ -20,4 +20,13 @@ export default class ProductModel {
       'SELECT * FROM Trybesmith.Products');
     return rows;
   }
+
+  async update(orderId: number, productId: number): Promise<void> {
+    await this.connection.execute(
+      `UPDATE Trybesmith.Products AS Products
+      SET Products.orderId = ?
+      WHERE Products.id = ?`,
+      [orderId, productId],
+    );
+  }
 }

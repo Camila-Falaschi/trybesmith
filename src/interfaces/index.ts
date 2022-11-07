@@ -14,7 +14,7 @@ export interface IUser {
 }
 
 export interface IOrder {
-  id: number,
+  id?: number,
   userId: number,
   productsIds: number[],
 }

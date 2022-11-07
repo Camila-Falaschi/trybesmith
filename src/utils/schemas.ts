@@ -11,3 +11,12 @@ export const userSchema = Joi.object({
   level: Joi.number().integer().min(1).required(),
   password: Joi.string().min(8).required(),
 });
+
+export const orderSchema = Joi.object({
+  productsIds: Joi.array().items(Joi.number().integer().min(1)).required(),
+});
+
+export const loginSchema = Joi.object({
+  username: Joi.string().required(),
+  password: Joi.string().required(),
+});
